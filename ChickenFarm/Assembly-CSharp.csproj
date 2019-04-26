@@ -109,8 +109,11 @@
     <Compile Include="Assets\all_pack\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\all_pack\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\all_pack\Standard Assets\Utility\WaypointProgressTracker.cs" />
+    <Compile Include="Assets\HerdSim\Scripts\Demo\SmoothCameraOrbit.cs" />
     <Compile Include="Assets\Scripts\EnableUPDPacks.cs" />
+    <None Include="Assets\HerdSim\Scripts\C#\- IMPORTANT - Version Change Readme.txt" />
     <None Include="Assets\all_pack\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\HerdSim\HerdSim Readme.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
