@@ -1,11 +1,7 @@
 ManifestFileVersion: 0
-<<<<<<< HEAD
-CRC: 2163683652
-=======
-CRC: 763322423
->>>>>>> 89e3ddb560bb5ab7bce78db10e73bcc6ea150291
+CRC: 3377043053
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: chicken_update_2
+      Name: chicken_update_1
       Dependencies: {}

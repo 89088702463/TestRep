@@ -5,13 +5,8 @@ using UnityEngine;
 
 public class BuildAssetBundle
 {
-    [MenuItem("Assets/Build Asset Bundles")]
-    static void BulidBundles()
-    {
-        BuildPipeline.BuildAssetBundles("Assets/AssetBundles", BuildAssetBundleOptions.None, BuildTarget.Android);
-    }
 
-    [MenuItem("Chicken Farm Manager/Глобальное обновление")]
+    [MenuItem("Chicken Farm Manager/[Глобальное обновление]")]
     static void GloabalUpdate()
     {
         WWWForm form = new WWWForm();
@@ -29,7 +24,7 @@ public class BuildAssetBundle
         }
     }
 
-    [MenuItem("Chicken Farm Manager/Отменить обновление")]
+    [MenuItem("Chicken Farm Manager/[Отменить обновление]")]
     static void StopGloabalUpdate()
     {
         WWWForm form = new WWWForm();
@@ -47,11 +42,17 @@ public class BuildAssetBundle
         }
     }
 
-    [MenuItem("Chicken Farm Manager/Очистить реестр (Unity)")]
+    [MenuItem("Chicken Farm Manager/[Очистить реестр (Unity)]")]
     static void ClearKsh()
     {
         PlayerPrefs.SetInt("version_game", 1);
         PlayerPrefs.SetInt("last_version_game", 1);
         PlayerPrefs.Save();
+    }
+
+    [MenuItem("Chicken Farm Manager/[Построить бандлы]")]
+    static void BulidBundles()
+    {
+        BuildPipeline.BuildAssetBundles("Assets/AssetBundles", BuildAssetBundleOptions.None, BuildTarget.Android);
     }
 }

@@ -56,12 +56,20 @@ public class EnableUPDPacks : MonoBehaviour
 
     private bool no_internet;
 
-    
+    private int cache_index;
 
 
     public IEnumerator GET_VERSION_GAME()
     {
-        WWWForm forms = new WWWForm(); // ПРЕФАБЫ
+        WWWForm formd = new WWWForm(); 
+        formd.AddField("id", 1);
+        WWW wwwq = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/get_cache.php", formd);
+        yield return wwwq;
+        cache_index = int.Parse(wwwq.text);
+
+        Debug.Log("Cache v: " + cache_index.ToString());
+
+        WWWForm forms = new WWWForm(); 
         forms.AddField("id", 1);
         WWW www = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/update_ranges.php", forms);
         yield return www;
@@ -81,7 +89,6 @@ public class EnableUPDPacks : MonoBehaviour
 
     public IEnumerator GET_VERSION()
     {
-
         WWWForm form3 = new WWWForm(); // ПРЕФАБЫ
         form3.AddField("id", 1);
         WWW www3 = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/get_count_p.php", form3);
@@ -161,7 +168,6 @@ public class EnableUPDPacks : MonoBehaviour
         }
     }
 
-
     IEnumerator DownloadBundle(int sversion) 
     {
         if(version != sversion)
@@ -171,12 +177,10 @@ public class EnableUPDPacks : MonoBehaviour
         }
 
         path = "http://g46869.hostnl1.fornex.org/chicken_update_" + sversion.ToString() + ".unity3d";
-        while (!Caching.ready)
-        {
-            yield return null;
-            Debug.Log("IS LOADED");
-        }
 
+        while (!Caching.ready)
+            yield return null;
+        
         var www = WWW.LoadFromCacheOrDownload(path, 0);
 
         StartCoroutine(ShowProgress(www));
