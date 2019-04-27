@@ -3,7 +3,11 @@ CRC: 3571220159
 Hashes:
   AssetFileHash:
     serializedVersion: 2
+<<<<<<< HEAD:ChickenFarm/Assets/AssetBundles/chicken_update_1.manifest
     Hash: f6883f86b0ad2011e0a69d881e8bf6bd
+=======
+    Hash: fc1999b12bd8b05d2c6e949f210a5429
+>>>>>>> 89e3ddb560bb5ab7bce78db10e73bcc6ea150291:ChickenFarm/Assets/AssetBundles/content/test2.manifest
   TypeTreeHash:
     serializedVersion: 2
     Hash: 23ccdc8d06b71eb28b08246a64356674
