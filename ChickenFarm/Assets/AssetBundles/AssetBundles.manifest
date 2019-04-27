@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 2757757127
+CRC: 2163683652
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: content/test2
+      Name: chicken_update_2
       Dependencies: {}

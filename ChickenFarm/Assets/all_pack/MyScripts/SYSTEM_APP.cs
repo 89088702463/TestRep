@@ -585,11 +585,14 @@ public class SYSTEM_APP : MonoBehaviour
             StartCoroutine(UpdateChikensCount());
             StartCoroutine(UpdateDataBase());
             StartCoroutine(GET_REFERRAL_CODE());
+            aenableUPDPacks.GoUpdate();
         }
         yield break;
     }
 
     private float t;
+
+    public EnableUPDPacks aenableUPDPacks;
 
     private bool init;
 

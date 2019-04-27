@@ -1,53 +1,207 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnableUPDPacks : MonoBehaviour
 {
-    string path = "http://g46869.hostnl1.fornex.org/test2.unity3d";
-    public int version = 0;
+    string path;
 
-    [SerializeField] GameObject prefab;
+    public GameObject all_panel, start_load, load_panel, no_connection, button_go;
 
-    void Awake()
+    public Transform line;
+
+    public Text loading;
+
+    bool stop;
+
+    void Awake() // Для будующих присвоений
     {
-        StartCoroutine(DownloadBundle());
+        
     }
 
-   IEnumerator DownloadBundle()
+    public void GoLoad()
     {
-        while (!Caching.ready)
-            yield return null;
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.rovio.angrybirds");
+    }
 
-        var www = WWW.LoadFromCacheOrDownload(path, version);
+    void Start()
+    {
+        version_game = PlayerPrefs.GetInt("version_game");
+        if(version_game == 0)
+        {
+            version_game = 1;
+            PlayerPrefs.SetInt("version_game", version_game);
+            PlayerPrefs.Save();
+        }
+        last_ver = PlayerPrefs.GetInt("last_version_game");
+        if (last_ver == 0)
+        {
+            last_ver = 1;
+        }
+    }
+
+
+
+    public void GoUpdate()
+    {
+        StartCoroutine(GET_VERSION_GAME());
+        //StartCoroutine(GET_VERSION());
+    }
+
+    [Header("Версия игры")]
+    public int version, lls = 0, version_game;
+
+    private int last_ver;
+
+    private bool no_internet;
+
+    
+
+
+    public IEnumerator GET_VERSION_GAME()
+    {
+        WWWForm forms = new WWWForm(); // ПРЕФАБЫ
+        forms.AddField("id", 1);
+        WWW www = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/update_ranges.php", forms);
+        yield return www;
+        int vers = int.Parse(www.text);
+        Debug.Log("VG:" + vers.ToString());
+        if(version_game != vers)
+        {
+            button_go.SetActive(true);
+            start_load.SetActive(false);
+            load_panel.SetActive(false);
+        }
+        else
+        {
+            StartCoroutine(GET_VERSION());
+        }
+    }
+
+    public IEnumerator GET_VERSION()
+    {
+
+        WWWForm form3 = new WWWForm(); // ПРЕФАБЫ
+        form3.AddField("id", 1);
+        WWW www3 = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/get_count_p.php", form3);
+        yield return www3;
+        count_p = int.Parse(www3.text);
+        Debug.Log("PREFABS-LOAD IN THIS PACK: " + count_p);
+
+        if (www3.error != null)
+        {
+            no_internet = true;
+        }
+        else
+        {
+            WWWForm form = new WWWForm();
+            form.AddField("id", 1);
+            WWW www = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/get_version.php", form);
+            yield return www;
+
+            if (www.error != null)
+            {
+                no_connection.SetActive(true);
+                yield return new WaitForSeconds(1.5f);
+                no_connection.SetActive(false);
+                StartCoroutine(GET_VERSION());
+            }
+            else
+            {
+                version = int.Parse(www.text);
+
+                if (version > last_ver)
+                {
+                    load_panel.SetActive(true);
+                    start_load.SetActive(false);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1.5f);
+                    all_panel.SetActive(false);
+                }
+
+                for (int i = version; i > 0; i--)
+                {
+                    StartCoroutine(DownloadBundle(i));
+                }
+            }
+        }
+        if(no_internet)
+        {
+            for (int i = last_ver; i > 0; i--)
+            {
+                StartCoroutine(DownloadBundle(i));
+            }
+        }
+    }
+   
+    int count_p;
+
+    private IEnumerator ShowProgress(WWW www)
+    {
+        float one = 1f / version;
+
+        while (www.progress < 1f)
+        {
+            line.localScale = new Vector3((one * lls), 1f, 1f);
+            loading.text = "ЗАГРУЗКА " + (one * lls * 100).ToString() + "%";
+        }
+        lls++;
+        line.localScale = new Vector3((one * lls), 1f, 1f);
+        loading.text = "ЗАГРУЗКА " + (one * lls * 100).ToString() + "%";
+        yield return new WaitForSeconds(0f);
+        if((one * lls * 100) == 100)
+        {
+            yield return new WaitForSeconds(3f);
+            load_panel.SetActive(false);
+            start_load.SetActive(false);
+            all_panel.SetActive(false);
+        }
+    }
+
+
+    IEnumerator DownloadBundle(int sversion) 
+    {
+        if(version != sversion)
+        {
+            count_p = PlayerPrefs.GetInt("count_p_" + sversion.ToString());
+            Debug.Log(sversion.ToString() + " :x: " + count_p.ToString());
+        }
+
+        path = "http://g46869.hostnl1.fornex.org/chicken_update_" + sversion.ToString() + ".unity3d";
+        while (!Caching.ready)
+        {
+            yield return null;
+            Debug.Log("IS LOADED");
+        }
+
+        var www = WWW.LoadFromCacheOrDownload(path, 0);
+
+        StartCoroutine(ShowProgress(www));
+
         yield return www;
 
-        if(!string.IsNullOrEmpty(www.error))
+        if (!string.IsNullOrEmpty(www.error)) // ЕСЛИ ОШИБКА ИЛИ НЕТ СОЕДИНЕНИЯ
         {
-            Debug.Log(www.error);
             yield break;
         }
-    
+
         var assetBundle = www.assetBundle;
 
-        var prefabRequest_line = assetBundle.LoadAssetAsync("BUNDLE_ASSET.prefab", typeof(GameObject));
-        yield return prefabRequest_line;
-
-        GameObject game_obj = prefabRequest_line.asset as GameObject;
-        Vector3 pos = game_obj.transform.position;
-        pos.y -= 10f;
-        Debug.Log("-------------POSITION A LOAD LINE OBJECT--------------");
-        Debug.Log("X = " + pos.x + " Y = " + pos.y + " Z = " + pos.z);
-        Instantiate(game_obj, pos, Quaternion.identity);
-
-        var prefabRequest_box = assetBundle.LoadAssetAsync("BOX_BUNDLE.prefab", typeof(GameObject));
-        yield return prefabRequest_box;
-
-        GameObject game_obj_2 = prefabRequest_box.asset as GameObject;
-
-        Vector3 pos2 = game_obj_2.transform.position;
-        Debug.Log("-------------POSITION A LOAD BOX OBJECT--------------");
-        Debug.Log("X = " + pos2.x + " Y = " + pos2.y + " Z = " + pos2.z);
-        Instantiate(game_obj_2, pos2, Quaternion.identity);
+        for (int i = 1; i <= count_p; i++)
+        {
+            Debug.Log(sversion.ToString() + " :KKK: " + i.ToString());
+            string name_s = "MAP_BUNDLE_" + sversion.ToString() + "_" + i.ToString() + ".prefab";
+            var prefabRequest_box2 = assetBundle.LoadAssetAsync(name_s, typeof(GameObject));
+            yield return prefabRequest_box2;
+            GameObject game_obj = prefabRequest_box2.asset as GameObject;
+            Vector3 pos = game_obj.transform.position;
+            Instantiate(game_obj, pos, Quaternion.identity);
+        }
+        PlayerPrefs.SetInt("count_p_"+sversion.ToString(), count_p);
+        PlayerPrefs.SetInt("last_version_game", version);
+        PlayerPrefs.Save();
     }
 }
