@@ -61,7 +61,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
 
-    public GameObject vedro, kal, egg; // Ведро
+    public GameObject kal, egg; // Ведро
 
     public void SetDO_INDEX(int index) // Функция на которую вещаем кнопку
     {
@@ -71,81 +71,61 @@ public class SYSTEM_APP : MonoBehaviour
         {
             case 1:  // Поить
                 {
-                    StartCoroutine(SET_BUTTON("drink"));
+                    StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f;
-                    Math.Floor(balance);// отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    if (vedro.activeSelf == false)
-                    {
-                        vedro.SetActive(true); // включаем ведро
-                    }
                     a_char.go = true;
-                    a_char.animator.SetBool("go", true);
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
             case 2:  // Кормить
                 {
-                    StartCoroutine(SET_BUTTON("eat"));
+                    StartCoroutine(SET_BUTTON("eat", "time_eat"));
                     BlockButton(true, "eat", 0);
                     balance -= 0.2f;
-                    Math.Floor(balance);// отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    if (vedro.activeSelf == true)
-                    {
-                        vedro.SetActive(false); // выключаем ведро
-                    }
                     a_char.go = true;
-                    a_char.animator.SetBool("go", true);
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
                     break;
                 }
             case 3:  // Убрать какашки
                 {
-                    StartCoroutine(SET_BUTTON("clean"));
+                    StartCoroutine(SET_BUTTON("clean", "time_clean"));
                     BlockButton(true, "clean", 2);
                     balance -= 0.2f;
-                    Math.Floor(balance);// отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    if (vedro.activeSelf == true)
-                    {
-                        vedro.SetActive(false); // выключаем ведро
-                    }
                     a_char.go = true;
-                    a_char.animator.SetBool("go", true);
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
                     break;
                 }
             case 4:  // Собрать яйца
                 {
-                    StartCoroutine(SET_BUTTON("get_eggs"));
+                    StartCoroutine(SET_BUTTON("get_eggs", "time_geteggs"));
                     BlockButton(true, "get_eggs", 4);
                     balance -= 0.2f;
-                    Math.Floor(balance);// отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    if (vedro.activeSelf == true)
-                    {
-                        vedro.SetActive(false); // выключаем ведро
-                    }
                     a_char.go = true;
-                    a_char.animator.SetBool("go", true);
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
                     break;
                 }
             case 5:  // Продать
                 {
-                    StartCoroutine(SET_BUTTON("sale_eggs"));
+                    StartCoroutine(SET_BUTTON("sale_eggs", "time_selleggs"));
                     BlockButton(true, "sale_eggs", 3);
                     balance += 1.5f;
-                    Math.Floor(balance);// прибавляем баланс
+                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    if (vedro.activeSelf == true)
-                    {
-                        vedro.SetActive(false); // выключаем ведро
-                    }
                     a_char.go = true;
-                    a_char.animator.SetBool("go", true);
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
                     break;
                 }
@@ -225,7 +205,7 @@ public class SYSTEM_APP : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public IEnumerator SET_BUTTON(string jjname)
+    public IEnumerator SET_BUTTON(string jjname, string table)
     {
         /*WWWForm form = new WWWForm();
         form.AddField("Name", p_name);
@@ -243,6 +223,7 @@ public class SYSTEM_APP : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("Name", p_name);
         form.AddField("Doname", jjname);
+        form.AddField("Time", table);
         WWW www = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/update_chiken.php", form);
         yield return www;
         Debug.Log(www.text);
@@ -283,11 +264,20 @@ public class SYSTEM_APP : MonoBehaviour
             if (www.text == "1")
             {
                 BlockButton(false, do_name[i], i);
+                if (i == 2)
+                {
+                    kal.SetActive(true);
+                }
+                if (i == 4)
+                {
+                    egg.SetActive(true);
+                }
             }
             else
             {
                 BlockButton(true, do_name[i], i);
             }
+            
         }
     }
 
@@ -305,10 +295,9 @@ public class SYSTEM_APP : MonoBehaviour
         count_chikens = int.Parse(www.text);
         for (int x = 0; x < count_chikens; x++)
         {
-            if (x < 100) // Чисто для тестов
-            {
-                Chikens[x].SetActive(true);
-            }
+              Chikens[x].SetActive(true);
+              a_char.points[0] = Chikens[x].transform;
+              a_char.points[1] = Chikens[x].transform;
         }
     }
 
@@ -323,6 +312,63 @@ public class SYSTEM_APP : MonoBehaviour
     public string vvv;
 
     public char[] ttt;
+
+    string GetBalToString(string txt)
+    {
+        char[] nm = new char[txt.Length];
+        char[] mass = txt.ToCharArray();
+        char last = mass[(txt.Length - 1)];
+
+        bool exist = false;
+
+        for (int d = 0; d < (mass.Length - 1); d++)
+        {
+            if (mass[d] == ',' || mass[d] == '.')
+            {
+                exist = true;
+            }
+        }
+
+        if (exist)
+        {
+            int last_ind = 0;
+            for (int d = (txt.Length - 1); d > 0; d--)
+            {
+                if (mass[d] != ',' && mass[d] != '.')
+                {
+                    last_ind++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            for (int i = 0; i < txt.Length; i++)
+            {
+                if (mass[i] != ',' && mass[i] != '.')
+                {
+                    nm[i] = mass[i];
+                }
+                else
+                {
+                    nm[i] = '.';
+                    for (int f = (mass.Length - last_ind); f > i; f--)
+                        nm[f] = mass[f];
+                }
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.Append(nm);
+            string v = sb.ToString();
+            ttt = nm;
+            return v;
+        }
+        else
+        {
+            ttt = nm;
+            return txt;
+        }
+    }
 
     float GetBalToFloat(string txt) // Метод замены запятой на точку, для последующего перевода в float (в бд запись идет именно с запятой)
     {
@@ -489,9 +535,11 @@ public class SYSTEM_APP : MonoBehaviour
 
     public IEnumerator SET_BALANCE()
     {
+        string output = GetBalToString(balance.ToString());
+
         WWWForm form = new WWWForm();
         form.AddField("Name", p_name);
-        form.AddField("Balance", balance.ToString());
+        form.AddField("Balance", output);
         WWW www = new WWW("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/set_balance.php", form);
         yield return www;
         yield break;
@@ -596,8 +644,11 @@ public class SYSTEM_APP : MonoBehaviour
 
     private bool init;
 
+    public float pseudo_balance;
+
     void Update()
     {
+       
         if (init)
         {
             t += Time.deltaTime;
@@ -692,6 +743,7 @@ public class SYSTEM_APP : MonoBehaviour
         Chikens = GameObject.FindGameObjectsWithTag("chicken");
         for(int i = 0; i < Chikens.Length; i++)
         {
+            //Chikens[i].GetComponent<chick>().anim.enabled = false;
             Chikens[i].SetActive(false);
         }
         for (int i = 0; i < 5; i++)
