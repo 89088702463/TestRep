@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Chickenfarm11.apk
+/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Chickenfarm12.apk
 SceneListBegin?
 Assets/all_pack/Scenes/SampleScene.unity
 SceneListEnd?
