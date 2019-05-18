@@ -111,17 +111,22 @@
     <Compile Include="Assets\all_pack\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\chick.cs" />
     <Compile Include="Assets\HerdSim\Scripts\Demo\SmoothCameraOrbit.cs" />
+    <Compile Include="Assets\Marcos Schultz\MS Sposts Car\Others\PromotionalMSVS.cs" />
+    <Compile Include="Assets\Marcos Schultz\MS Sposts Car\Others\WheelMeshes.cs" />
     <Compile Include="Assets\RobotSphere\Assets\Scripts\robotAnimScript.cs" />
     <Compile Include="Assets\Scripts\EnableUPDPacks.cs" />
     <Compile Include="Assets\TEST_SCRIPT.cs" />
+    <None Include="Assets\Industrial Props\ReadMe.txt" />
     <None Include="Assets\CharacterPack01\Meshes\MAX-Files\readme.txt" />
     <None Include="Assets\HerdSim\Scripts\C#\- IMPORTANT - Version Change Readme.txt" />
     <None Include="Assets\all_pack\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\WaterTank\Shaders\NormalSpecGloss.shader" />
     <None Include="Assets\CharacterPack01\info.txt" />
     <None Include="Assets\HerdSim\HerdSim Readme.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+    <None Include="Assets\Marcos Schultz\MS Sposts Car\License.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
