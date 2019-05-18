@@ -111,6 +111,7 @@
     <Compile Include="Assets\all_pack\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\chick.cs" />
     <Compile Include="Assets\HerdSim\Scripts\Demo\SmoothCameraOrbit.cs" />
+    <Compile Include="Assets\RobotSphere\Assets\Scripts\robotAnimScript.cs" />
     <Compile Include="Assets\Scripts\EnableUPDPacks.cs" />
     <Compile Include="Assets\TEST_SCRIPT.cs" />
     <None Include="Assets\CharacterPack01\Meshes\MAX-Files\readme.txt" />
