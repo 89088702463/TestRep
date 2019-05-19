@@ -60,10 +60,11 @@ public class SYSTEM_APP : MonoBehaviour
     }
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
+    [SerializeField] robotAnimScript a_robot; // Скрипт робота
 
     public GameObject kal, egg; // Ведро
 
-    public void SetDO_INDEX(int index) // Функция на которую вещаем кнопку
+    public void SetDO_INDEX(int index) // Функция которую вешаем на кнопку
     {
         a_char.do_index = index;
         a_char.go = true;
@@ -76,9 +77,9 @@ public class SYSTEM_APP : MonoBehaviour
                     balance -= 0.2f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
                     _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
-                    a_char.go = true;
-                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
+                    a_char.go = true; // Включаем анимацию
+                    a_char.animator.SetBool("walk", true);
                     break;
                 }
             case 2:  // Кормить
@@ -93,7 +94,7 @@ public class SYSTEM_APP : MonoBehaviour
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
                     break;
                 }
-            case 3:  // Убрать какашки
+            case 3:  // Убрать
                 {
                     StartCoroutine(SET_BUTTON("clean", "time_clean"));
                     BlockButton(true, "clean", 2);
@@ -232,6 +233,8 @@ public class SYSTEM_APP : MonoBehaviour
     private bool is_locked;
 
     public Color new_all;
+
+    // Что за метод ???
 
     public void BlockButton(bool flock, string name, int index_button)
     {
