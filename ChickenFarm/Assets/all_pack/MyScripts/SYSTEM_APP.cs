@@ -80,6 +80,7 @@ public class SYSTEM_APP : MonoBehaviour
                     StartCoroutine(SET_BALANCE());
                     a_char.go = true; // Включаем анимацию
                     a_char.animator.SetBool("walk", true);
+                    a_robot.go = true;
                     break;
                 }
             case 2:  // Кормить
