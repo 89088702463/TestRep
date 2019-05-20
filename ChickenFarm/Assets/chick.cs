@@ -10,11 +10,12 @@ public class chick : MonoBehaviour
 
     void Awake()
     {
+        anim = GetComponent<Animator>();
         t = Random.Range(0f, 1.5f);
         n = Random.Range(2, 10);
     }
 
-    public Animator anim;
+    private Animator anim;
 
     void Update()
     {

@@ -53,22 +53,29 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 		void CreateVirtualAxes()
 		{
-			// set axes to use
-			m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
-			m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
-
-			// create new axes based on axes to use
-			if (m_UseX)
-			{
-				m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
-				CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
-			}
-			if (m_UseY)
-			{
-				m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
-				CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
-			}
-		}
+            // set axes to use
+            m_UseX = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyHorizontal);
+            m_UseY = (axesToUse == AxisOption.Both || axesToUse == AxisOption.OnlyVertical);
+            // create new axes based on axes to use
+            if (m_UseX)
+            {
+                if (CrossPlatformInputManager.AxisExists(horizontalAxisName))
+                {
+                    CrossPlatformInputManager.UnRegisterVirtualAxis(horizontalAxisName);
+                }
+                m_HorizontalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(horizontalAxisName);
+                CrossPlatformInputManager.RegisterVirtualAxis(m_HorizontalVirtualAxis);
+            }
+            if (m_UseY)
+            {
+                if (CrossPlatformInputManager.AxisExists(verticalAxisName))
+                {
+                    CrossPlatformInputManager.UnRegisterVirtualAxis(verticalAxisName);
+                }
+                m_VerticalVirtualAxis = new CrossPlatformInputManager.VirtualAxis(verticalAxisName);
+                CrossPlatformInputManager.RegisterVirtualAxis(m_VerticalVirtualAxis);
+            }
+        }
 
 
 		public void OnDrag(PointerEventData data)

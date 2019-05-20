@@ -45,8 +45,12 @@ public class SYSTEM_APP : MonoBehaviour
     public IEnumerator start()
     {
         go = true;
+        yield return new WaitForSeconds(1f);
+        drk.enabled = true;
+        buts.enabled = true;
         yield return new WaitForSeconds(1.2f);
         DARK_PANEL.SetActive(false);
+       
         MAIN_PANEL.SetActive(true);
 
         yield return new WaitForSeconds(1.2f);
@@ -75,7 +79,7 @@ public class SYSTEM_APP : MonoBehaviour
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
@@ -87,7 +91,7 @@ public class SYSTEM_APP : MonoBehaviour
                     BlockButton(true, "eat", 0);
                     balance -= 0.2f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
@@ -99,7 +103,7 @@ public class SYSTEM_APP : MonoBehaviour
                     BlockButton(true, "clean", 2);
                     balance -= 0.2f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
@@ -111,7 +115,7 @@ public class SYSTEM_APP : MonoBehaviour
                     BlockButton(true, "get_eggs", 4);
                     balance -= 0.2f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
@@ -123,7 +127,7 @@ public class SYSTEM_APP : MonoBehaviour
                     BlockButton(true, "sale_eggs", 3);
                     balance += 1.5f;
                     balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
@@ -237,13 +241,13 @@ public class SYSTEM_APP : MonoBehaviour
     {
         if (flock)
         {
-            buttons[index_button].enabled = false;
-            imgs[index_button].color = col;
+            buttons[index_button].interactable = false;
+            //imgs[index_button].color = col;
         }
         else
         {
-            buttons[index_button].enabled = true;
-            imgs[index_button].color = new_all;
+            buttons[index_button].interactable = true;
+            //imgs[index_button].color = new_all;
         }
     }
 
@@ -309,9 +313,9 @@ public class SYSTEM_APP : MonoBehaviour
         PlayerPrefs.DeleteKey("pass");
     }
 
-    public string vvv;
+    //public string vvv;
 
-    public char[] ttt;
+    private char[] ttt;
 
     string GetBalToString(string txt)
     {
@@ -525,7 +529,7 @@ public class SYSTEM_APP : MonoBehaviour
         {
             balance = float.Parse(www.text);
         }
-        _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+        _balance_text.text = balance.ToString() + "p"; // Присвоению тексту значения из переменной balance
         if (_balance_text.text == "")
         {
             StartCoroutine(GET_BALANCE());
@@ -732,8 +736,7 @@ public class SYSTEM_APP : MonoBehaviour
     {
         StartCoroutine(start());
         SEND_NOTIFICATION(); // Запускаем уведомление по счетчику
-        buts.enabled = true;
-        drk.enabled = true;
+        
     }
 
     [SerializeField] RectTransform welcome;
