@@ -26,20 +26,14 @@ public class SYSTEM_APP : MonoBehaviour
         //NormalizationForm.WindowState = FormWindowState.Minimized;
         Application.Quit();
     }
+
     [SerializeField] GameObject DARK_PANEL;
-
     [SerializeField] GameObject MAIN_PANEL;
-
     [SerializeField] Animator anims;
-
     //[SerializeField] SmoothFollow MouseLook;
-
     private bool go = false;
-
     private float balance;
-
     public MethodsOfParseBalance _mth = MethodsOfParseBalance.From_GetWithComma; // Попробуй разными
-
     [SerializeField] float speed;
 
     public IEnumerator start()
@@ -60,10 +54,11 @@ public class SYSTEM_APP : MonoBehaviour
     }
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
+    [SerializeField] robotAnimScript a_robot; // Скрипт робота
 
     public GameObject kal, egg; // Ведро
 
-    public void SetDO_INDEX(int index) // Функция на которую вещаем кнопку
+    public void SetDO_INDEX(int index) // Функция которую вешаем на кнопку
     {
         a_char.do_index = index;
         a_char.go = true;
@@ -73,9 +68,9 @@ public class SYSTEM_APP : MonoBehaviour
                 {
                     StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
-                    balance -= 0.2f;
-                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    balance -= 0.2f; // отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);
+                    _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
@@ -85,48 +80,48 @@ public class SYSTEM_APP : MonoBehaviour
                 {
                     StartCoroutine(SET_BUTTON("eat", "time_eat"));
                     BlockButton(true, "eat", 0);
-                    balance -= 0.2f;
-                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    balance -= 0.2f; // отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);
+                    _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
-                    a_char.animator.SetBool("walk", true);
-                    StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
+                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    StartCoroutine(SET_BALANCE());
                     break;
                 }
-            case 3:  // Убрать какашки
+            case 3:  // Убраться
                 {
                     StartCoroutine(SET_BUTTON("clean", "time_clean"));
                     BlockButton(true, "clean", 2);
-                    balance -= 0.2f;
-                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    balance -= 0.2f; // отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);
+                    _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
-                    a_char.animator.SetBool("walk", true);
-                    StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
+                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    StartCoroutine(SET_BALANCE());
                     break;
                 }
             case 4:  // Собрать яйца
                 {
                     StartCoroutine(SET_BUTTON("get_eggs", "time_geteggs"));
                     BlockButton(true, "get_eggs", 4);
-                    balance -= 0.2f;
-                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    balance -= 0.2f; // отнимаем баланс
+                    balance = (float)Math.Round(balance, 2);
+                    _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
-                    a_char.animator.SetBool("walk", true);
-                    StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
+                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    StartCoroutine(SET_BALANCE());
                     break;
                 }
             case 5:  // Продать
                 {
                     StartCoroutine(SET_BUTTON("sale_eggs", "time_selleggs"));
                     BlockButton(true, "sale_eggs", 3);
-                    balance += 1.5f;
-                    balance = (float)Math.Round(balance, 2);// отнимаем баланс
-                    _balance_text.text = "Баланс: " + balance.ToString(); // Присвоению тексту значения из переменной balance
+                    balance += 1.5f; // прибавляем баланс
+                    balance = (float)Math.Round(balance, 2);
+                    _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
-                    a_char.animator.SetBool("walk", true);
-                    StartCoroutine(SET_BALANCE()); // говорим персонажу двигаться за обектом
+                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    StartCoroutine(SET_BALANCE()); 
                     break;
                 }
 
@@ -138,7 +133,6 @@ public class SYSTEM_APP : MonoBehaviour
     [SerializeField] Text _balance_text; // Текст баланса
 
     string p_name;
-
     string password;
 
     public void Init(bool start = false)
@@ -151,15 +145,10 @@ public class SYSTEM_APP : MonoBehaviour
     }
 
     [SerializeField] InputField if_name, pass;
-
     [SerializeField] Text error;
-
     [SerializeField] GameObject START_PANEL;
-
     [SerializeField] Toggle check_box;
-
     [SerializeField] Animator buts, drk;
-
     [SerializeField] Text name_txt;
 
     public void BuyChiken()

@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\all_pack\MyScripts\CharacterAI.cs" />
+    <Compile Include="Assets\all_pack\MyScripts\LightMerc.cs" />
     <Compile Include="Assets\all_pack\MyScripts\Move.cs" />
     <Compile Include="Assets\all_pack\MyScripts\MyJostick.cs" />
     <Compile Include="Assets\all_pack\MyScripts\SmoothFollow.cs" />
@@ -111,8 +112,6 @@
     <Compile Include="Assets\all_pack\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\chick.cs" />
     <Compile Include="Assets\HerdSim\Scripts\Demo\SmoothCameraOrbit.cs" />
-    <Compile Include="Assets\Marcos Schultz\MS Sposts Car\Others\PromotionalMSVS.cs" />
-    <Compile Include="Assets\Marcos Schultz\MS Sposts Car\Others\WheelMeshes.cs" />
     <Compile Include="Assets\RobotSphere\Assets\Scripts\robotAnimScript.cs" />
     <Compile Include="Assets\Scripts\EnableUPDPacks.cs" />
     <Compile Include="Assets\TEST_SCRIPT.cs" />
@@ -126,7 +125,6 @@
     <None Include="Assets\all_pack\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\all_pack\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
-    <None Include="Assets\Marcos Schultz\MS Sposts Car\License.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
