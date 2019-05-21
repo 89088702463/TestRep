@@ -9,8 +9,6 @@ public class CharacterAI : MonoBehaviour {
 
     [SerializeField] NavMeshAgent nav; // Система навигации
 
-    public Transform[] points; // координаты точек куда персонаж будет ходить(колодец, миска, курица и тд)
-
     [HideInInspector]
     public int do_index; // индекс в массиве, какую точку будем достигать (выше)
 
@@ -25,7 +23,9 @@ public class CharacterAI : MonoBehaviour {
         obj.SetActive(false);
     }
 
-	void Update () { // Обработка на каждый кадр
+    public Transform[] points; // координаты точек куда персонаж будет ходить(колодец, миска, курица и тд)
+
+    void Update () { // Обработка на каждый кадр
 		if(go)
         {
             nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points

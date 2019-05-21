@@ -11,8 +11,8 @@ public class LightMerc : MonoBehaviour
     {
         lt = GetComponent<Light>();
     }
-    //public GameObject lamp;
-    //public float Timerr = 15;
+
+    // Скрипт плавного мерцания лампы
 
     void Update()
     {
