@@ -153,7 +153,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     public void BuyChiken()
     {
-        Application.OpenURL("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/buy_chiken.php");
+        Application.OpenURL("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/buy_chicken.php");
         return;
     }
 
@@ -285,8 +285,8 @@ public class SYSTEM_APP : MonoBehaviour
         for (int x = 0; x < count_chikens; x++)
         {
               Chikens[x].SetActive(true);
-              a_char.points[0] = Chikens[x].transform;
-              a_char.points[1] = Chikens[x].transform;
+              //a_char.points[0] = Chikens[x].transform; // Персонаж подходит к последней курице в стаде (кормить)
+              //a_char.points[1] = Chikens[x].transform; // Тоже когда жмем поить
         }
     }
 

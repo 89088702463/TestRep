@@ -1,9 +1,10 @@
 Android
 PlayerPath?
-/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Chickenfarm15.apk
+/Users/Anna/Documents/ChickenFarm-TestRep/ChickenFarm/Chickenfarm16.apk
 SceneListBegin?
 Assets/all_pack/Scenes/SampleScene.unity
 SceneListEnd?
+9f18b300b8a2bda048cd373fef62c4eb Assembly-CSharp.dll:.LightMerc
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 01aa15e337e3a9c62f15153dfac6d589 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -147,7 +148,7 @@ f8bd7a92bf9f22d289759689ae7b1fd4 Assembly-CSharp.dll:UnityStandardAssets.Utility
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:UnityStandardAssets.CrossPlatformInput.MobileControlRig
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:UnityStandardAssets.Utility.ObjectResetter
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
-1bcd02855827e64b07b6f06d34bab1bd Assembly-CSharp.dll:.CharacterAI
+ef5a3a19462c94118bdbbc69cbc744e0 Assembly-CSharp.dll:.CharacterAI
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.TEST_GIT
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -201,4 +202,3 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.robotAnimScript
 47cd05cf11ce8beb2fd9a1522f58f5ec Assembly-CSharp.dll:UnityStandardAssets.Utility.AutoMobileShaderSwitch
-9f18b300b8a2bda048cd373fef62c4eb Assembly-CSharp.dll:.LightMerc
