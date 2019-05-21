@@ -6193,6 +6193,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2757576155667886895, guid: 846da6d3dba2c564ca2969ae9091c8fc,
+        type: 3}
+      propertyPath: MovementRange
+      value: 175
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 846da6d3dba2c564ca2969ae9091c8fc, type: 3}
 --- !u!1 &703752765
@@ -7426,7 +7431,7 @@ GameObject:
   - component: {fileID: 840200921}
   - component: {fileID: 840200922}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13207,6 +13212,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615215282549790648, guid: 06b272c69f253284dbd06b53bc903109,
+        type: 3}
+      propertyPath: Xsensitivity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615215282549790648, guid: 06b272c69f253284dbd06b53bc903109,
+        type: 3}
+      propertyPath: Ysensitivity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06b272c69f253284dbd06b53bc903109, type: 3}
