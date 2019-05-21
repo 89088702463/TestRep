@@ -164,9 +164,9 @@ public class SYSTEM_APP : MonoBehaviour
 
     [SerializeField] Text name_txt;
 
-    public void BuyChiken()
+    public void BuyChicken()
     {
-        Application.OpenURL("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/buy_chiken.php");
+        Application.OpenURL("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/buy_chicken.php");
         return;
     }
 

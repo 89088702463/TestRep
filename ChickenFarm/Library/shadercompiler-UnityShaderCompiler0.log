@@ -1,4 +1,10 @@
 Base path: /Applications/Unity/Unity.app/Contents
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+<<<<<<< Updated upstream
 Cmd: initializeCompiler
+=======
+Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
+
+Quitting shader compiler process
+>>>>>>> Stashed changes
