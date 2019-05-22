@@ -5,17 +5,15 @@ using UnityEngine.AI;
 
 public class CharacterAI : MonoBehaviour {
 
+    [SerializeField] SYSTEM_APP systems; // Система игры
     public Animator animator; // Система анимаций
-
     [SerializeField] NavMeshAgent nav; // Система навигации
 
     [HideInInspector]
-    public int do_index; // индекс в массиве, какую точку будем достигать (выше)
-
+    public int do_index; // Индекс в массиве, какую точку будем достигать
     [HideInInspector]
-    public  bool go;
+    public  bool go; // Движение
 
-    [SerializeField] SYSTEM_APP systems; // Система игры
 
     public IEnumerator end(GameObject obj)
     {
@@ -23,7 +21,7 @@ public class CharacterAI : MonoBehaviour {
         obj.SetActive(false);
     }
 
-    public Transform[] points; // координаты точек куда персонаж будет ходить(колодец, миска, курица и тд)
+    public Transform[] points; // координаты точек куда персонаж будет ходить (колодец, миска, курица и тд)
 
     void Update () { // Обработка на каждый кадр
 		if(go)

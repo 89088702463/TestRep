@@ -20,12 +20,7 @@ public class SYSTEM_APP : MonoBehaviour
     [DllImport("user32.dll")]
     private static extern IntPtr GetActiveWindow();*/
 
-    public void EXIT_APP()
-    {
-        //ShowWindow(GetActiveWindow(), 2);
-        //NormalizationForm.WindowState = FormWindowState.Minimized;
-        Application.Quit();
-    }
+
 
     [SerializeField] GameObject DARK_PANEL;
     [SerializeField] GameObject MAIN_PANEL;
@@ -48,20 +43,22 @@ public class SYSTEM_APP : MonoBehaviour
 
     }
 
-    public void OUT_MONEY() // Вывод средств, пока заглушка
-    {
-        Application.OpenURL("https://www.google.ru/");
-    }
+
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
     [SerializeField] robotAnimScript a_robot; // Скрипт робота
 
-    public GameObject kal, egg; // Ведро
+    public GameObject kal, egg; //
 
-    public void SetDO_INDEX(int index) // Функция которую вешаем на кнопку
+    public void SetDO_INDEX(int index) // Метод который вешаем на кнопку
     {
         a_char.do_index = index;
         a_char.go = true;
+
+        // Похоже проблема с анимацией работа тут!
+        //a_robot.go = true;
+        //a_robot.do_index = index;
+
         switch (index)
         {
             case 1:  // Поить
@@ -97,6 +94,7 @@ public class SYSTEM_APP : MonoBehaviour
                     _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true;
                     a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    //a_robot.go = true;
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
@@ -164,7 +162,7 @@ public class SYSTEM_APP : MonoBehaviour
         yield return www;
     }
 
-    public void Registering()
+    public void Registering() // Открываем URL с регистрацией
     {
         Application.OpenURL("http://g46869.hostnl1.fornex.org/example-dom-vis.ru/bd-all/registration.php");
         return;
@@ -758,6 +756,10 @@ public class SYSTEM_APP : MonoBehaviour
     int state_time; // индекс позволяющий определить то время которое ближе
 
     [SerializeField] Toggle dev; // Кнопка в меню вывода денег (режим разработчика)
+    public void OUT_MONEY() // Вывод средств, пока заглушка
+    {
+        Application.OpenURL("https://www.google.ru/");
+    }
 
     public void SEND_NOTIFICATION()
     {
@@ -771,6 +773,11 @@ public class SYSTEM_APP : MonoBehaviour
          SEND_NOTIFICATION();
      }*/
 
-
+    public void EXIT_APP()
+    {
+        //ShowWindow(GetActiveWindow(), 2);
+        //NormalizationForm.WindowState = FormWindowState.Minimized;
+        Application.Quit();
+    }
 }
 
