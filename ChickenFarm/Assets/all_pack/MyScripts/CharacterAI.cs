@@ -23,12 +23,12 @@ public class CharacterAI : MonoBehaviour {
 
     public Transform[] points; // координаты точек куда персонаж будет ходить (колодец, миска, курица и тд)
 
-    void Update () { // Обработка на каждый кадр
-        //print(do_index);
+    void Update () { // Обработка каждый кадр
+
 		if(go)
         {
 
-
+            //systems.WaterLamp.SetActive(false); // Выключаем синий свет
             nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points
             if (Vector3.Distance(transform.position, points[do_index - 1].position) < 0.6f) // Если дистанция между обьектом и персонажем меньше 0.6 то включаем анимацию
             {
@@ -37,7 +37,11 @@ public class CharacterAI : MonoBehaviour {
                 animator.SetBool("walk", false); // Анимация покоя
 
                 if (do_index == 1)
-                    StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
+                    //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
+                    systems.WaterLamp.SetActive(false);
+                if (do_index == 2)
+                    //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
+                    systems.EatLamp.SetActive(false);
 
                 if (do_index == 3)
                     StartCoroutine(end(systems.kal)); // Выключаем clear через 1.3 сек

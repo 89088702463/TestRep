@@ -47,6 +47,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     public GameObject egg, kal; //
     public GameObject WaterLamp; // Синяя лампа над терминалом с водой
+    public GameObject EatLamp; // Зеленая лампа над баком с едой
 
     public void SetDO_INDEX(int index) // Метод который вешаем на кнопку
     {
@@ -62,7 +63,7 @@ public class SYSTEM_APP : MonoBehaviour
         {
             case 1:  // Поить
                 {
-                    //WaterLamp.SetActive(false);
+                    WaterLamp.SetActive(false);
                     StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f; // отнимаем баланс
@@ -75,6 +76,7 @@ public class SYSTEM_APP : MonoBehaviour
                 }
             case 2:  // Кормить
                 {
+                    EatLamp.SetActive(false);
                     StartCoroutine(SET_BUTTON("eat", "time_eat"));
                     BlockButton(true, "eat", 0);
                     balance -= 0.2f; // отнимаем баланс
@@ -246,6 +248,15 @@ public class SYSTEM_APP : MonoBehaviour
             if (www.text == "1")
             {
                 BlockButton(false, do_name[i], i);
+
+                if (i == 1)
+                {
+                    WaterLamp.SetActive(true);
+                }
+                if (i == 3)
+                {
+                    EatLamp.SetActive(true);
+                }
                 if (i == 2)
                 {
                     kal.SetActive(true);
@@ -258,6 +269,8 @@ public class SYSTEM_APP : MonoBehaviour
             else
             {
                 BlockButton(true, do_name[i], i);
+
+                //WaterLamp.SetActive(false);
             }
             
         }
