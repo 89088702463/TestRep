@@ -65,6 +65,7 @@
     <Compile Include="Assets\all_pack\MyScripts\LightMerc.cs" />
     <Compile Include="Assets\all_pack\MyScripts\Move.cs" />
     <Compile Include="Assets\all_pack\MyScripts\MyJostick.cs" />
+    <Compile Include="Assets\all_pack\MyScripts\RobotAI.cs" />
     <Compile Include="Assets\all_pack\MyScripts\SmoothFollow.cs" />
     <Compile Include="Assets\all_pack\MyScripts\SYSTEM_APP.cs" />
     <Compile Include="Assets\all_pack\MyScripts\TEST_GIT.cs" />

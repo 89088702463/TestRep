@@ -20,8 +20,6 @@ public class SYSTEM_APP : MonoBehaviour
     [DllImport("user32.dll")]
     private static extern IntPtr GetActiveWindow();*/
 
-
-
     [SerializeField] GameObject DARK_PANEL;
     [SerializeField] GameObject MAIN_PANEL;
     [SerializeField] Animator anims;
@@ -44,11 +42,11 @@ public class SYSTEM_APP : MonoBehaviour
     }
 
 
-
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
     [SerializeField] robotAnimScript a_robot; // Скрипт робота
 
-    public GameObject kal, egg; //
+    public GameObject egg, kal; //
+    public GameObject WaterLamp; // Синяя лампа над терминалом с водой
 
     public void SetDO_INDEX(int index) // Метод который вешаем на кнопку
     {
@@ -56,19 +54,21 @@ public class SYSTEM_APP : MonoBehaviour
         a_char.go = true;
 
         // Похоже проблема с анимацией работа тут!
-        //a_robot.go = true;
+
         //a_robot.do_index = index;
+        //a_robot.go = true;
 
         switch (index)
         {
             case 1:  // Поить
                 {
+                    //WaterLamp.SetActive(false);
                     StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true;
+                    a_char.go = true; // Движение к объекту
                     a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
                     break;
@@ -80,8 +80,8 @@ public class SYSTEM_APP : MonoBehaviour
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true;
-                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    a_char.go = true; // Движение к объекту
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
@@ -92,8 +92,8 @@ public class SYSTEM_APP : MonoBehaviour
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true;
-                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    a_char.go = true; // Движение к объекту
+                    a_char.animator.SetBool("walk", true);
                     //a_robot.go = true;
                     StartCoroutine(SET_BALANCE());
                     break;
@@ -105,8 +105,8 @@ public class SYSTEM_APP : MonoBehaviour
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true;
-                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    a_char.go = true; // Движение к объекту
+                    a_char.animator.SetBool("walk", true);
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
@@ -117,8 +117,8 @@ public class SYSTEM_APP : MonoBehaviour
                     balance += 1.5f; // прибавляем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true;
-                    a_char.animator.SetBool("walk", true); // персонаж движится за обектом
+                    a_char.go = true; // Движение к объекту
+                    a_char.animator.SetBool("walk", true); // Анимация
                     StartCoroutine(SET_BALANCE()); 
                     break;
                 }
@@ -183,8 +183,6 @@ public class SYSTEM_APP : MonoBehaviour
         conn.SetActive(true);
     }
 
-
-
     public void ReloadLevel()
     {
         PlayerPrefs.DeleteKey("name");
@@ -192,7 +190,7 @@ public class SYSTEM_APP : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public IEnumerator SET_BUTTON(string jjname, string table)
+    public IEnumerator SET_BUTTON(string jjname, string table) // Нажали на кнопку
     {
         /*WWWForm form = new WWWForm();
         form.AddField("Name", p_name);
@@ -235,9 +233,6 @@ public class SYSTEM_APP : MonoBehaviour
     }
 
     public string[] do_name;
-
-
-
 
     public IEnumerator GET_BUTTINS()
     {
@@ -415,7 +410,7 @@ public class SYSTEM_APP : MonoBehaviour
         }
     }
 
-    public IEnumerator UpdateDataBase()// Проверка значений базы данных на наличие 1 
+    public IEnumerator UpdateDataBase()// Проверка значений в БД на 1 
     {
         while (true)
         {

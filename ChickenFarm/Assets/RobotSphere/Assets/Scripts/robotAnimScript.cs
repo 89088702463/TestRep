@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class robotAnimScript : MonoBehaviour {
 
     [SerializeField] SYSTEM_APP systems; // Система игры
-    Animator anim; // Система анимаций
+    //public Animator anim; // Система анимаций
+    public Animator animator; // Система анимаций
     [SerializeField] NavMeshAgent nav; // Система навигации
 
     [HideInInspector]
@@ -21,25 +22,27 @@ public class robotAnimScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		anim = gameObject.GetComponent<Animator> ();
+		animator = gameObject.GetComponent<Animator> ();
 		gameObject.transform.eulerAngles = rot;
-	}
+        print("Привет робот");
+    }
 
-    public Transform[] points; // координаты точек куда двигаться роботу
+    public Transform[] points; // Координаты точек куда двигаться роботу
 
 
     void Update () {
-
+        //print(go);
         if (go)
         {
+            print(go);
             print(do_index);
-            anim.SetBool("Roll_Anim", true);
+            animator.SetBool("Roll_Anim", true);
             nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points
             if (Vector3.Distance(transform.position, points[do_index - 1].position) < 0.6f) // Если дистанция между обьектом и персонажем меньше 0.6 то включаем анимацию
             {
-                anim.SetTrigger("work"); // Анимация (ВЗЯТЬ)
+                animator.SetTrigger("work"); // Анимация (ВЗЯТЬ)
                 go = false;
-                anim.SetBool("walk", false); // Анимация стойки на месте
+                animator.SetBool("walk", false); // Анимация стойки на месте
 
                 if (do_index == 3)
                     StartCoroutine(end1(systems.kal)); // Выключаем какашки через 1.3 сек
@@ -49,17 +52,17 @@ public class robotAnimScript : MonoBehaviour {
             }
         }
 
-        //CheckKey ();
-		//gameObject.transform.eulerAngles = rot;
+        CheckKey ();
+		gameObject.transform.eulerAngles = rot;
 	}
 
 	void CheckKey(){
 		// Walk
 		if (Input.GetKey (KeyCode.W)) {
-			anim.SetBool ("Walk_Anim", true);
+			animator.SetBool ("Walk_Anim", true);
 		} 
 		else if (Input.GetKeyUp (KeyCode.W)) {
-			anim.SetBool ("Walk_Anim", false);
+            animator.SetBool ("Walk_Anim", false);
 		}
 
 		// Rotate Left
@@ -74,21 +77,21 @@ public class robotAnimScript : MonoBehaviour {
 
 		// Roll
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			if (anim.GetBool ("Roll_Anim")) {
-				anim.SetBool ("Roll_Anim", false);
+			if (animator.GetBool ("Roll_Anim")) {
+                animator.SetBool ("Roll_Anim", false);
 			}
 			else {
-				anim.SetBool ("Roll_Anim", true);
+                animator.SetBool ("Roll_Anim", true);
 			}
 		} 
 
 		// Close
 		if(Input.GetKeyDown(KeyCode.LeftControl)){
-			if (!anim.GetBool ("Open_Anim")) {
-				anim.SetBool ("Open_Anim", true);
+			if (!animator.GetBool ("Open_Anim")) {
+                animator.SetBool ("Open_Anim", true);
 			} 
 			else {
-				anim.SetBool ("Open_Anim", false);
+                animator.SetBool ("Open_Anim", false);
 			}
 		}
 	}

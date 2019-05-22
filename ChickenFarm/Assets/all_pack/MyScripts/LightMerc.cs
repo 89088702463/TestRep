@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightMerc : MonoBehaviour
 {
+    // Скрипт плавного мерцания лампы
+
     public float duration = 1.5f;
     public Light lt;
 
@@ -11,8 +13,6 @@ public class LightMerc : MonoBehaviour
     {
         lt = GetComponent<Light>();
     }
-
-    // Скрипт плавного мерцания лампы
 
     void Update()
     {
