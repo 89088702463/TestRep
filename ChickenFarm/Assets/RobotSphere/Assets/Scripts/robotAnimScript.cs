@@ -45,7 +45,7 @@ public class robotAnimScript : MonoBehaviour {
                 animator.SetBool("walk", false); // Анимация стойки на месте
 
                 if (do_index == 3)
-                    StartCoroutine(end1(systems.kal)); // Выключаем какашки через 1.3 сек
+                    StartCoroutine(end1(systems.Clear)); // Выключаем какашки через 1.3 сек
 
                 if (do_index == 4)
                     StartCoroutine(end1(points[do_index - 1].gameObject)); // Выключаем яйцо через 1.3 сек

@@ -43,21 +43,19 @@ public class SYSTEM_APP : MonoBehaviour
 
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
-    [SerializeField] robotAnimScript a_robot; // Скрипт робота
+    [SerializeField] RobotAI a_robot; // Скрипт робота
 
-    public GameObject egg, kal; //
-    public GameObject WaterLamp; // Синяя лампа над терминалом с водой
-    public GameObject EatLamp; // Зеленая лампа над баком с едой
+    public GameObject egg, Clear; //
+    public GameObject WaterLamp; // Синяя лампа
+    public GameObject EatLamp; // Зеленая лампа 
 
-    public void SetDO_INDEX(int index) // Метод который вешаем на кнопку
+    public void SetDO_INDEX(int index) // Метод который вешаем на кнопки действие
     {
         a_char.do_index = index;
         a_char.go = true;
 
-        // Похоже проблема с анимацией работа тут!
-
-        //a_robot.do_index = index;
-        //a_robot.go = true;
+        a_robot.do_index = index;
+        //a_robot.goRobot = true; // Здесь еще рано вращать робота
 
         switch (index)
         {
@@ -87,20 +85,20 @@ public class SYSTEM_APP : MonoBehaviour
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
-            case 3:  // Убраться
+            case 3:  // Убрать
                 {
                     StartCoroutine(SET_BUTTON("clean", "time_clean"));
                     BlockButton(true, "clean", 2);
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    a_char.go = true; // Движение к объекту
-                    a_char.animator.SetBool("walk", true);
-                    //a_robot.go = true;
+                    //a_char.go = false; // Движение к объекту
+                    //a_char.animator.SetBool("walk", true);
+                    a_robot.goRobot = true;
                     StartCoroutine(SET_BALANCE());
                     break;
                 }
-            case 4:  // Собрать яйца
+            case 4:  // Собрать
                 {
                     StartCoroutine(SET_BUTTON("get_eggs", "time_geteggs"));
                     BlockButton(true, "get_eggs", 4);
@@ -259,7 +257,7 @@ public class SYSTEM_APP : MonoBehaviour
                 }
                 if (i == 2)
                 {
-                    kal.SetActive(true);
+                    Clear.SetActive(true);
                 }
                 if (i == 4)
                 {
@@ -269,8 +267,6 @@ public class SYSTEM_APP : MonoBehaviour
             else
             {
                 BlockButton(true, do_name[i], i);
-
-                //WaterLamp.SetActive(false);
             }
             
         }
@@ -279,6 +275,7 @@ public class SYSTEM_APP : MonoBehaviour
     public GameObject[] Chikens;
 
     private int count_chikens;
+    //public int count_chikens;
 
     public IEnumerator GET_CHIKENS()
     {
@@ -290,9 +287,10 @@ public class SYSTEM_APP : MonoBehaviour
         count_chikens = int.Parse(www.text);
         for (int x = 0; x < count_chikens; x++)
         {
-              Chikens[x].SetActive(true);
-              //a_char.points[0] = Chikens[x].transform; // Персонаж подходит к последней курице в стаде (кормить)
-              //a_char.points[1] = Chikens[x].transform; // Тоже когда жмем поить
+            Chikens[x].SetActive(true);
+            name_txt.text = "Игрок: " + p_name + " " + count_chikens; // Печатаем имя игрока и количество его куриц
+            //a_char.points[0] = Chikens[x].transform; // Персонаж подходит к последней курице в стаде (кормить)
+            //a_char.points[1] = Chikens[x].transform; // Тоже когда жмем поить
         }
     }
 
@@ -592,7 +590,7 @@ public class SYSTEM_APP : MonoBehaviour
                     error.color = Color.white;
                     error.text = "Вход...";
                     is_logined = true;
-                    name_txt.text = "Игрок: " + p_name;
+                    //name_txt.text = "Игрок: " + p_name + count_chikens;
                     if (check_box.isOn)
                     {
                         PlayerPrefs.SetString("name", p_name);

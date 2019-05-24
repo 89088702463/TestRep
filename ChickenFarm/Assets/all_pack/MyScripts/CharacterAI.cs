@@ -44,7 +44,7 @@ public class CharacterAI : MonoBehaviour {
                     systems.EatLamp.SetActive(false);
 
                 if (do_index == 3)
-                    StartCoroutine(end(systems.kal)); // Выключаем clear через 1.3 сек
+                    StartCoroutine(end(systems.Clear)); // Выключаем clear через 1.3 сек
 
                 if (do_index == 4)
                     StartCoroutine(end(points[do_index - 1].gameObject)); // Выключаем яйцо через 1.3 сек
