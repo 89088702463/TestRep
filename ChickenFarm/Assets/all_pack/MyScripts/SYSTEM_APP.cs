@@ -44,6 +44,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
     [SerializeField] RobotAI a_robot; // Скрипт робота
+    [SerializeField] ParticleSystem waterParticles;
 
     public GameObject egg, Clear; //
     public GameObject WaterLamp; // Синяя лампа
@@ -62,6 +63,7 @@ public class SYSTEM_APP : MonoBehaviour
             case 1:  // Поить
                 {
                     WaterLamp.SetActive(false);
+                    waterParticles.Play();
                     StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f; // отнимаем баланс
@@ -92,7 +94,7 @@ public class SYSTEM_APP : MonoBehaviour
                     balance -= 0.2f; // отнимаем баланс
                     balance = (float)Math.Round(balance, 2);
                     _balance_text.text = "Баланс: " + balance.ToString();
-                    //a_char.go = false; // Движение к объекту
+                    a_char.go = false; // Движение к объекту
                     //a_char.animator.SetBool("walk", true);
                     a_robot.goRobot = true;
                     StartCoroutine(SET_BALANCE());
@@ -234,6 +236,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     public string[] do_name;
 
+    // Слишком часто обращается к БД и возникает мигание кнопок на которые завязаны действия
     public IEnumerator GET_BUTTINS()
     {
         for (int i = 0; i < 5; i++) // Макс кол-во куриц - 5, потом больше сделаем
@@ -250,6 +253,7 @@ public class SYSTEM_APP : MonoBehaviour
                 if (i == 1)
                 {
                     WaterLamp.SetActive(true);
+                    waterParticles.Stop();
                 }
                 if (i == 3)
                 {

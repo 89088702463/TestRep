@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class RobotAI : MonoBehaviour {
 
-    [SerializeField] SYSTEM_APP systems; // Система игры
+    [SerializeField] SYSTEM_APP systems; // Основной скрипт игры
     public Animator animator; // Система анимаций
     [SerializeField] NavMeshAgent nav; // Система навигации
 
     [HideInInspector]
     public int do_index; // Индекс в массиве, какую точку будем достигать
     [HideInInspector]
-    public bool goRobot; // Движение
+    public bool goRobot; // Движение true/false
 
 
     public IEnumerator end(GameObject obj)
@@ -44,7 +44,7 @@ public class RobotAI : MonoBehaviour {
                 //animator.SetTrigger("work"); // Анимация
                 goRobot = false;
                 //animator.SetBool("Roll_Anim", true);
-                //animator.SetBool("Walk_Anim", true); // Анимация покоя
+                animator.SetBool("Walk_Anim", true); // Анимация покоя
 
                 //if (do_index == 1)
                 //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет

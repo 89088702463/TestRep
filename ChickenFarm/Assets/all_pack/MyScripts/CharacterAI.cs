@@ -32,7 +32,8 @@ public class CharacterAI : MonoBehaviour {
             nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points
             if (Vector3.Distance(transform.position, points[do_index - 1].position) < 0.6f) // Если дистанция между обьектом и персонажем меньше 0.6 то включаем анимацию
             {
-                animator.SetTrigger("work"); // Анимация
+                //animator.SetTrigger("work"); // Анимация работы
+                animator.SetTrigger("talk"); // Анимация
                 go = false;
                 animator.SetBool("walk", false); // Анимация покоя
 
