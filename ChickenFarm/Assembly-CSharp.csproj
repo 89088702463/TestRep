@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Assets\all_pack\MyScripts\CharacterAI.cs" />
     <Compile Include="Assets\all_pack\MyScripts\chick.cs" />
+    <Compile Include="Assets\all_pack\MyScripts\FinalScene.cs" />
     <Compile Include="Assets\all_pack\MyScripts\LightMerc.cs" />
     <Compile Include="Assets\all_pack\MyScripts\Move.cs" />
     <Compile Include="Assets\all_pack\MyScripts\MyJostick.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets\all_pack\MyScripts\SmoothFollow.cs" />
     <Compile Include="Assets\all_pack\MyScripts\SYSTEM_APP.cs" />
     <Compile Include="Assets\all_pack\MyScripts\TEST_GIT.cs" />
+    <Compile Include="Assets\all_pack\MyScripts\TruckAI.cs" />
     <Compile Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\all_pack\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />

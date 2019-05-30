@@ -17,32 +17,29 @@ public class CharacterAI : MonoBehaviour {
 
     public IEnumerator end(GameObject obj)
     {
-        yield return new WaitForSeconds(10.3f);
+        yield return new WaitForSeconds(3.3f);
         obj.SetActive(false);
     }
 
-    public Transform[] points; // координаты точек куда персонаж будет ходить (колодец, миска, курица и тд)
+    public Transform[] points; // точеки куда персонаж перемещается
 
     void Update () { // Обработка каждый кадр
-
-		if(go)
+		if(go) // Персонажи движутся к объектам
         {
-
-            //systems.WaterLamp.SetActive(false); // Выключаем синий свет
-            nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points
+            nav.destination = points[do_index - 1].position; // Точки, цели в массиве points
             if (Vector3.Distance(transform.position, points[do_index - 1].position) < 0.6f) // Если дистанция между обьектом и персонажем меньше 0.6 то включаем анимацию
             {
                 //animator.SetTrigger("work"); // Анимация работы
-                animator.SetTrigger("talk"); // Анимация
+                animator.SetTrigger("talk"); // Анимация стояния
                 go = false;
                 animator.SetBool("walk", false); // Анимация покоя
 
                 if (do_index == 1)
-                    //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
-                    systems.WaterLamp.SetActive(false);
+                    //StartCoroutine(end(systems.WaterLamp)); // Анимация поить
+                    systems.WaterLampRed.SetActive(false); // Выключаем красный свет
                 if (do_index == 2)
-                    //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
-                    systems.EatLamp.SetActive(false);
+                    //StartCoroutine(end(systems.WaterLamp)); // Анимация кормить
+                    systems.EatLamp.SetActive(false); // Выключаем синий свет
 
                 if (do_index == 3)
                     StartCoroutine(end(systems.Clear)); // Выключаем clear через 1.3 сек

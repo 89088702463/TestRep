@@ -19,6 +19,9 @@ public class RobotAI : MonoBehaviour {
     {
         yield return new WaitForSeconds(10.3f);
         obj.SetActive(false);
+        do_index = 6;
+        print("Робот возвращается");
+        goRobot = true;
     }
 
     public Transform[] points; // координаты точек куда персонаж будет ходить (колодец, миска, курица и тд)
@@ -41,28 +44,27 @@ public class RobotAI : MonoBehaviour {
             nav.destination = points[do_index - 1].position; // Достигаем обьект в массиве points
             if (Vector3.Distance(transform.position, points[do_index - 1].position) < 0.6f) // Если дистанция между обьектом и персонажем меньше 0.6 то включаем анимацию
             {
-                //animator.SetTrigger("work"); // Анимация
                 goRobot = false;
-                //animator.SetBool("Roll_Anim", true);
-                animator.SetBool("Walk_Anim", true); // Анимация покоя
+                //animator.SetBool("Walk_Anim", true); // Анимация покоя
 
-                //if (do_index == 1)
-                //StartCoroutine(end(systems.WaterLamp)); // Выключаем синий свет
 
                 if (do_index == 3)
                 {
                     StartCoroutine(end(systems.Clear)); // Выключаем clear через 1.3 сек
-                    //animator.SetBool("Roll_Anim", true);
+
                     animator.SetBool("Roll_Anim", false);
+                    animator.SetBool("Walk_Anim", false);
                     animator.SetBool("Open_Anim", true);
                     print("Робот на объекте");
-
                 }
 
+                if (do_index == 6)
+                {
+                    animator.SetBool("Roll_Anim", false);
+                    animator.SetBool("Walk_Anim", false);
+                    animator.SetBool("Open_Anim", true);
+                }
 
-
-                if (do_index == 4)
-                    StartCoroutine(end(points[do_index - 1].gameObject)); // Выключаем яйцо через 1.3 сек
 
             }
         }

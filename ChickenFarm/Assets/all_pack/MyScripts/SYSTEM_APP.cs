@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
 using System.Text;
+using UnityEngine.SceneManagement;
 
 public class SYSTEM_APP : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class SYSTEM_APP : MonoBehaviour
 
     public GameObject egg, Clear; //
     public GameObject WaterLamp; // Синяя лампа
+    public GameObject WaterLampRed;
     public GameObject EatLamp; // Зеленая лампа 
 
     public void SetDO_INDEX(int index) // Метод который вешаем на кнопки действие
@@ -121,7 +123,8 @@ public class SYSTEM_APP : MonoBehaviour
                     _balance_text.text = "Баланс: " + balance.ToString();
                     a_char.go = true; // Движение к объекту
                     a_char.animator.SetBool("walk", true); // Анимация
-                    StartCoroutine(SET_BALANCE()); 
+                    StartCoroutine(SET_BALANCE());
+                    Invoke("LoadFinalScene", 3f); // Задержка перед вызовом метода, сек
                     break;
                 }
 
@@ -777,11 +780,17 @@ public class SYSTEM_APP : MonoBehaviour
         //AndroidNotification.SendNotification(100, 15, "Вы давно не заходили", "Соберите яйца чтобы их продать", "Курица снесла яйца!", Color.white, false, AndroidNotification.NotificationExecuteMode.Inexact, true, 1, false, 0, 0);
     }
 
+    void LoadFinalScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     /* public IEnumerator CORE(int time)
      {
          yield return new WaitForSeconds(time);
          SEND_NOTIFICATION();
      }*/
+
 
     public void EXIT_APP()
     {
@@ -789,5 +798,6 @@ public class SYSTEM_APP : MonoBehaviour
         //NormalizationForm.WindowState = FormWindowState.Minimized;
         Application.Quit();
     }
+
 }
 
