@@ -21,7 +21,7 @@ public class CharacterAI : MonoBehaviour {
         obj.SetActive(false);
     }
 
-    public Transform[] points; // точеки куда персонаж перемещается
+    public Transform[] points; // точки к которым перемещается персонаж
 
     void Update () { // Обработка каждый кадр
 		if(go) // Персонажи движутся к объектам

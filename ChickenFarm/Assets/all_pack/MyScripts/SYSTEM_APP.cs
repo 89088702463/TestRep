@@ -45,7 +45,8 @@ public class SYSTEM_APP : MonoBehaviour
 
     [SerializeField] CharacterAI a_char; // Скрипт персонажа
     [SerializeField] RobotAI a_robot; // Скрипт робота
-    [SerializeField] ParticleSystem waterParticles;
+    [SerializeField] ParticleSystem waterParticles; // Объект вода
+    [SerializeField] ParticleSystem eatParticles; // Объект еда
 
     public GameObject egg, Clear; //
     public GameObject WaterLamp; // Синяя лампа
@@ -65,7 +66,7 @@ public class SYSTEM_APP : MonoBehaviour
             case 1:  // Поить
                 {
                     WaterLamp.SetActive(false);
-                    waterParticles.Play();
+                    waterParticles.Play(); // Включаем воду
                     StartCoroutine(SET_BUTTON("drink", "time_drink"));
                     BlockButton(true, "drink", 1);
                     balance -= 0.2f; // отнимаем баланс
@@ -79,6 +80,7 @@ public class SYSTEM_APP : MonoBehaviour
             case 2:  // Кормить
                 {
                     EatLamp.SetActive(false);
+                    eatParticles.Play(); // Включаем еду
                     StartCoroutine(SET_BUTTON("eat", "time_eat"));
                     BlockButton(true, "eat", 0);
                     balance -= 0.2f; // отнимаем баланс
@@ -261,6 +263,7 @@ public class SYSTEM_APP : MonoBehaviour
                 if (i == 3)
                 {
                     EatLamp.SetActive(true);
+                    eatParticles.Stop();
                 }
                 if (i == 2)
                 {

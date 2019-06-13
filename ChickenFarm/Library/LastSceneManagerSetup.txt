@@ -1,7 +1,4 @@
 sceneSetups:
-- path: Assets/NextScene.unity
-  isLoaded: 1
-  isActive: 0
-- path: Assets/all_pack/Scenes/FinalScene.unity
+- path: Assets/all_pack/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
